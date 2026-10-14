@@ -2,6 +2,6 @@
   "name": "demo-app",
   "version": "1.0.0",
   "scripts": {
-    "build": "mkdir -p dist && echo '<h1>Hello Hakimkhan from the Release Pipeline!</h1>' > dist/index.html"
+    "build": "mkdir -p dist && echo '<h1>Second time Release Pipeline!</h1>' > dist/index.html"
   }
 }
