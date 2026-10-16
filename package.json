@@ -1,6 +1,6 @@
 {
   "name": "demo-app",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "scripts": {
     "build": "mkdir -p dist && echo '<h1>Blue-Green Version 2454564!</h1>' > dist/index.html"
   }
