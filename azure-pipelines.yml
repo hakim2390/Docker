@@ -19,3 +19,10 @@ steps:
     containerRegistry: 'Connection to Container'
     repository: 'demo-container'
     command: 'push'
+
+- task: Npm@1
+  inputs:
+    command: 'publish'
+    workingDir: '$(System.DefaultWorkingDirectory)'
+    publishRegistry: 'useFeed'
+    publishFeed: 'e4bf9bf7-312f-4c81-aa63-f87bcaf41d3b/00f2945a-00ef-445e-b2b9-e342c3e695e5'
