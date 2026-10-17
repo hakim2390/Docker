@@ -1,6 +1,6 @@
 resource "azurerm_resource_group" "lab_rg" {
   name     = "NodeJs-Terraform-RG"
-  location = "East US"
+  location = "West Europe"
 }
 
 resource "azurerm_service_plan" "lab_plan" {
