@@ -4,6 +4,9 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
+variables:
+  tfWorkingDir: '$(System.DefaultWorkingDirectory)/terraform'
+
 steps:
 - task: Docker@2
   displayName: 'Build Docker Image'
@@ -26,3 +29,37 @@ steps:
     workingDir: '$(System.DefaultWorkingDirectory)'
     publishRegistry: 'useFeed'
     publishFeed: 'e4bf9bf7-312f-4c81-aa63-f87bcaf41d3b/00f2945a-00ef-445e-b2b9-e342c3e695e5'
+
+- task: TerraformInstaller@1
+  displayName: 'Install Terraform'
+  inputs:
+    terraformVersion: 'latest'
+
+- task: TerraformTaskV4@4
+  displayName: 'Terraform Init'
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    workingDirectory: '$(tfWorkingDir)'
+    backendServiceArm: 'Terraform-Azure-Conn'
+    backendAzureRmResourceGroupName: 'rg-terraform-backend'
+    backendAzureRmStorageAccountName: 'storagetfstatesotre'
+    backendAzureRmContainerName: 'containertfstate'
+    backendAzureRmKey: 'terraform.tfstate'
+
+- task: TerraformTaskV4@4
+  displayName: 'Terraform Plan'
+  inputs:
+    provider: 'azurerm'
+    command: 'plan'
+    workingDirectory: '$(tfWorkingDir)'
+    environmentServiceNameAzureRM: 'Terraform-Azure-Conn'
+
+- task: TerraformTaskV4@4
+  displayName: 'Terraform Apply'
+  inputs:
+    provider: 'azurerm'
+    command: 'apply'
+    workingDirectory: '$(tfWorkingDir)'
+    environmentServiceNameAzureRM: 'Terraform-Azure-Conn'
+    commandOptions: '-auto-approve'
