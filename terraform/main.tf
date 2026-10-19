@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "vm_rg" {
-  name     = "NodeJs-Terraform-VM-RG"
+  name     = "NodeJs-Terraform-VM-RG-India"
   location = "South India" 
 }
 
