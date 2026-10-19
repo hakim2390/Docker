@@ -1,6 +1,6 @@
 resource "azurerm_resource_group" "vm_rg" {
   name     = "NodeJs-Terraform-VM-RG"
-  location = "Central US" 
+  location = "South India" 
 }
 
 # 1. Create the Virtual Network
